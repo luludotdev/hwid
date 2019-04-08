@@ -1,0 +1,10 @@
+{
+  "name": "hwid",
+  "version": "0.1.0",
+  "description": "Grab the system's unique hardware ID",
+  "main": "lib/index.js",
+  "repository": "https://github.com/lolPants/hwid",
+  "author": "Jack Baron <jackmbaron@gmail.com>",
+  "license": "ISC",
+  "private": false
+}
