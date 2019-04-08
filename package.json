@@ -1,6 +1,6 @@
 {
   "name": "hwid",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Grab the system's unique hardware ID",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,8 +16,7 @@
     "check": "npm run build -- --noEmit",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "prebuild": "rimraf lib",
-    "build": "tsc",
-    "build-dev": "npm run build -- --sourceMap",
+    "build": "tsc --sourceMap",
     "watch": "tsc --watch",
     "dev": "npm run watch -- --sourceMap"
   },
