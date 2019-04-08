@@ -37,3 +37,5 @@ export const getHWID = async (options?: Partial<IOptions>) => {
   const shouldHash = options && options.hash
   return shouldHash ? hash(hwid, options && options.algorithm) : hwid
 }
+
+export { getHWID as default }
