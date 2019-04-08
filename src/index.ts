@@ -1,4 +1,5 @@
 import { createHash } from 'crypto'
+import { ERR_UNKNOWN_PARSE, ERR_UNSUPPORTED_PLATFORM } from './errors'
 import { unixHWID } from './unix'
 import { win32HWID } from './win32'
 const { platform } = process
@@ -21,4 +22,18 @@ const resolveID = async () => {
     default:
       return undefined
   }
+}
+
+interface IOptions {
+  hash: boolean
+  algorithm: Algorithm
+}
+
+export const getHWID = async (options?: Partial<IOptions>) => {
+  const hwid = await resolveID()
+  if (hwid === undefined) throw ERR_UNSUPPORTED_PLATFORM
+  if (hwid === '') throw ERR_UNKNOWN_PARSE
+
+  const shouldHash = options && options.hash
+  return shouldHash ? hash(hwid, options && options.algorithm) : hwid
 }
