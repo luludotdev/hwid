@@ -3,12 +3,31 @@
   "version": "0.1.0",
   "description": "Grab the system's unique hardware ID",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "prepublishOnly": "npm run test && npm run build",
+    "test": "npm run check && npm run lint",
+    "check": "npm run build -- --noEmit",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "prebuild": "rimraf lib",
+    "build": "tsc",
+    "build-dev": "npm run build -- --sourceMap",
+    "watch": "tsc --watch",
+    "dev": "npm run watch -- --sourceMap"
+  },
   "repository": "https://github.com/lolPants/hwid",
   "author": "Jack Baron <jackmbaron@gmail.com>",
   "license": "ISC",
   "private": false,
   "devDependencies": {
     "prettier": "^1.16.4",
+    "rimraf": "^2.6.3",
     "tslint": "^5.15.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
