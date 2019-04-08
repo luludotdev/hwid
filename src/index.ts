@@ -27,6 +27,7 @@ const resolveID = async () => {
 interface IOptions {
   hash: boolean
   algorithm: Algorithm
+  upper: boolean
 }
 
 export const getHWID = async (options?: Partial<IOptions>) => {
@@ -35,7 +36,8 @@ export const getHWID = async (options?: Partial<IOptions>) => {
   if (hwid === '') throw ERR_UNKNOWN_PARSE
 
   const shouldHash = options && options.hash
-  return shouldHash ? hash(hwid, options && options.algorithm) : hwid
+  const hashed = shouldHash ? hash(hwid, options && options.algorithm) : hwid
+  return options && options.upper ? hashed.toUpperCase() : hashed.toLowerCase()
 }
 
 export { getHWID as default }

@@ -36,3 +36,4 @@ You can pass options to the function as an optional object.
 | - | - | - |
 | `hash` | `boolean` | Hashes the output before returning |
 | `algorithm` | `string` | Hash algorithm to use |
+| `upper` | `boolean` | Return the HWID in uppercase
