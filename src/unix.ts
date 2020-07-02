@@ -24,11 +24,13 @@ const parse = (stdout: string) => {
         .split('\n')[0]
         .replace(/\=|\s+|\"/gi, '')
         .toLowerCase()
+
     case 'linux':
       return stdout
         .toString()
         .replace(/\r+|\n+|\s+/gi, '')
         .toLowerCase()
+
     default:
       return ''
   }
