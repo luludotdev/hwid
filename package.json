@@ -16,7 +16,7 @@
     "check": "yarn run compile --noEmit",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "prebuild": "rimraf lib esm",
-    "build:cjs": "ncc build ./src/index.ts -o lib -m",
+    "build:cjs": "ncc build ./src/index.ts -o lib -m -e winreg",
     "build:esm": "yarn run compile --module ES6 --outDir esm",
     "build": "yarn run build:cjs && yarn run build:esm",
     "compile": "tsc",
