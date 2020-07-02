@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "removeComments": true,
+    "removeComments": false,
     "downlevelIteration": true,
     "outDir": "./lib",
     "rootDir": "./src",
