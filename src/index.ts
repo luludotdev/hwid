@@ -4,8 +4,25 @@ import { hash } from './utils'
 import type { Algorithm } from './utils'
 
 interface IOptions {
+  /**
+   * Whether or not to hash the HWID before returning
+   *
+   * Defaults to `false`
+   */
   hash: boolean
+
+  /**
+   * Hashing algorithm to use if `hash` is `true`
+   *
+   * Defaults to `sha256`
+   */
   algorithm: Algorithm
+
+  /**
+   * Convert HWID to UPPERCASE
+   *
+   * Defaults to `false`
+   */
   upper: boolean
 }
 
