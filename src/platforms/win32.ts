@@ -1,6 +1,7 @@
 import Registry from 'winreg'
+import type { ResolverFn } from '../resolve'
 
-export const win32HWID: () => Promise<string> = async () =>
+export const win32HWID: ResolverFn = async () =>
   new Promise((resolve, reject) => {
     const regKey = new Registry({
       hive: Registry.HKLM,
