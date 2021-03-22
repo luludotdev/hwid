@@ -1,4 +1,9 @@
-import { ERR_UNKNOWN_PARSE } from './errors'
+import {
+  ERR_INVALID_ALGORITHM,
+  ERR_INVALID_HASH,
+  ERR_INVALID_UPPER,
+  ERR_UNKNOWN_PARSE,
+} from './errors'
 import { resolveID } from './resolve'
 import { hash } from './utils'
 import type { Algorithm } from './utils'
@@ -27,6 +32,21 @@ interface IOptions {
 }
 
 export const getHWID = async (options?: Partial<IOptions>) => {
+  if (options?.hash !== undefined && typeof options.hash !== 'boolean') {
+    throw ERR_INVALID_HASH
+  }
+
+  if (
+    options?.algorithm !== undefined &&
+    typeof options.algorithm !== 'string'
+  ) {
+    throw ERR_INVALID_ALGORITHM
+  }
+
+  if (options?.upper !== undefined && typeof options.upper !== 'boolean') {
+    throw ERR_INVALID_UPPER
+  }
+
   const hwid = await resolveID()
   if (hwid === '') throw ERR_UNKNOWN_PARSE
 
