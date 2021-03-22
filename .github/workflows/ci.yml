@@ -1,0 +1,28 @@
+name: Node.js CI
+on: [push, pull_request]
+
+jobs:
+  test:
+    if: contains(github.ref, 'refs/tags/') == false
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Install packages
+        run: yarn install --frozen-lockfile
+      - name: Test
+        run: yarn run test
