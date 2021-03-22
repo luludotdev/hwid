@@ -24,7 +24,7 @@ interface IOptions {
   algorithm: Algorithm
 
   /**
-   * Convert HWID to UPPERCASE
+   * Convert HWID to UPPERCASE before returning
    *
    * Defaults to `false`
    */
