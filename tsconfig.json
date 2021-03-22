@@ -13,7 +13,8 @@
     "downlevelIteration": true,
     "outDir": "./lib",
     "rootDir": "./src",
-    "declaration": true
+    "declaration": true,
+    "importHelpers": true
   },
   "include": [
     "src/**/*.ts"

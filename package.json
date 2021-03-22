@@ -17,7 +17,7 @@
     "lint": "xo",
     "clean": "rimraf lib esm",
     "prebuild": "yarn run clean",
-    "build:cjs": "ncc build ./src/index.ts -o lib -m -e winreg",
+    "build:cjs": "ncc build ./src/index.ts -o lib -m -e winreg -e tslib",
     "build:esm": "yarn run compile --module ES6 --outDir esm",
     "build": "yarn run build:cjs && yarn run build:esm",
     "compile": "tsc",
@@ -41,6 +41,7 @@
     "xo": "^0.38.2"
   },
   "dependencies": {
+    "tslib": "^2.1.0",
     "winreg": "^1.2.4"
   }
 }
