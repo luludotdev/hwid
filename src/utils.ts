@@ -2,8 +2,8 @@ import { exec } from 'child_process'
 import { createHash } from 'crypto'
 
 export type Algorithm = 'md5' | 'sha1' | 'sha256'
-export const hash = (id: string, algo?: Algorithm) => {
-  const h = createHash(algo ?? 'sha256')
+export const hash = (id: string, algo: Algorithm) => {
+  const h = createHash(algo)
   h.update(id)
 
   return h.digest('hex')

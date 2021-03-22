@@ -14,7 +14,7 @@ export const getHWID = async (options?: Partial<IOptions>) => {
   if (hwid === '') throw ERR_UNKNOWN_PARSE
 
   const shouldHash = options?.hash ?? false
-  const hashed = shouldHash ? hash(hwid, options?.algorithm) : hwid
+  const hashed = shouldHash ? hash(hwid, options?.algorithm ?? 'sha256') : hwid
   return options?.upper ?? false ? hashed.toUpperCase() : hashed.toLowerCase()
 }
 
