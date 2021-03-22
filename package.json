@@ -14,32 +14,21 @@
     "prepublishOnly": "yarn run test && yarn run build",
     "test": "yarn run check && yarn run lint",
     "check": "yarn run compile --noEmit",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "prebuild": "rimraf lib esm",
+    "lint": "xo",
+    "clean": "rimraf lib esm",
+    "prebuild": "yarn run clean",
     "build:cjs": "ncc build ./src/index.ts -o lib -m -e winreg",
     "build:esm": "yarn run compile --module ES6 --outDir esm",
     "build": "yarn run build:cjs && yarn run build:esm",
     "compile": "tsc",
     "watch": "yarn run compile --watch",
+    "predev": "yarn run clean",
     "dev": "yarn run watch  --sourceMap"
   },
-  "repository": "https://github.com/lolPants/hwid",
-  "author": "Jack Baron <jackmbaron@gmail.com>",
+  "repository": "git@github.com:lolPants/hwid.git",
+  "author": "Jack Baron <jackmbaron@gmail.com> (https://www.jackbaron.com)",
   "license": "ISC",
   "private": false,
-  "devDependencies": {
-    "@types/node": "^14.0.14",
-    "@types/winreg": "^1.2.30",
-    "@zeit/ncc": "^0.22.3",
-    "prettier": "^2.0.5",
-    "rimraf": "^3.0.2",
-    "tslint": "^6.1.2",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-microsoft-contrib": "^6.2.0",
-    "tslint-plugin-prettier": "^2.3.0",
-    "typescript": "^3.9.6"
-  },
-  "dependencies": {
-    "winreg": "^1.2.4"
-  }
+  "devDependencies": {},
+  "dependencies": {}
 }
