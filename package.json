@@ -29,6 +29,12 @@
   "author": "Jack Baron <jackmbaron@gmail.com> (https://www.jackbaron.com)",
   "license": "ISC",
   "private": false,
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "@vercel/ncc": "^0.27.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.2.3",
+    "xo": "^0.38.2"
+  },
   "dependencies": {}
 }
