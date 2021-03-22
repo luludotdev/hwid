@@ -1,6 +1,6 @@
 {
   "name": "hwid",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Grab the system's unique hardware ID",
   "main": "./lib/index.js",
   "module": "./esm/index.js",
@@ -53,6 +53,8 @@
     "extensions": [
       "ts"
     ],
-    "require": ["ts-node/register"]
+    "require": [
+      "ts-node/register"
+    ]
   }
 }
