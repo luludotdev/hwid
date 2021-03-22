@@ -2,11 +2,12 @@ import { createHash } from 'crypto'
 import { ERR_UNKNOWN_PARSE, ERR_UNSUPPORTED_PLATFORM } from './errors'
 import { unixHWID } from './unix'
 import { win32HWID } from './win32'
+
 const { platform } = process
 
 type Algorithm = 'md5' | 'sha1' | 'sha256'
 const hash = (id: string, algo?: Algorithm) => {
-  const h = createHash(algo || 'sha256')
+  const h = createHash(algo ?? 'sha256')
   h.update(id)
 
   return h.digest('hex')
@@ -38,7 +39,7 @@ export const getHWID = async (options?: Partial<IOptions>) => {
   if (hwid === '') throw ERR_UNKNOWN_PARSE
 
   const shouldHash = options?.hash ?? false
-  const hashed = shouldHash ? hash(hwid, options && options.algorithm) : hwid
+  const hashed = shouldHash ? hash(hwid, options?.algorithm) : hwid
   return options?.upper ?? false ? hashed.toUpperCase() : hashed.toLowerCase()
 }
 
