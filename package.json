@@ -1,6 +1,6 @@
 {
   "name": "hwid",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Grab the system's unique hardware ID",
   "type": "module",
   "exports": "./lib/index.js",
