@@ -1,5 +1,5 @@
 import Registry from 'winreg'
-import type { ResolverFn } from '../resolve'
+import type { ResolverFn } from '../resolve.js'
 
 export const win32HWID: ResolverFn = async () =>
   new Promise((resolve, reject) => {

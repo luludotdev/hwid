@@ -11,10 +11,6 @@ This package is published to the NPM registry as [`hwid`](https://www.npmjs.com/
 ## 🔧 Usage
 First, import the module:
 ```js
-// CommonJS
-const { getHWID } = require('hwid')
-
-// ES Modules
 import { getHWID } from 'hwid'
 ```
 

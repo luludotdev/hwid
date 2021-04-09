@@ -3,10 +3,10 @@ import {
   ERR_INVALID_HASH,
   ERR_INVALID_UPPER,
   ERR_UNKNOWN_PARSE,
-} from './errors'
-import { resolveID } from './resolve'
-import { hash } from './utils'
-import type { Algorithm } from './utils'
+} from './errors.js'
+import { resolveID } from './resolve.js'
+import { hash } from './utils.js'
+import type { Algorithm } from './utils.js'
 
 interface IOptions {
   /**

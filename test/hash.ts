@@ -1,5 +1,5 @@
 import test from 'ava'
-import { hash } from '../src/utils'
+import { hash } from '../src/utils.js'
 
 const enum TestData {
   Input = 'this is a test string',

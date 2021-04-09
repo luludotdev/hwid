@@ -1,6 +1,6 @@
-import type { ResolverFn } from '../resolve'
-import { execa } from '../utils'
-import type { ParserFn } from '../utils'
+import type { ResolverFn } from '../resolve.js'
+import { execa } from '../utils.js'
+import type { ParserFn } from '../utils.js'
 
 const SHELL_COMMAND = 'ioreg -rd1 -c IOPlatformExpertDevice'
 const parse: ParserFn = raw =>

@@ -1,10 +1,10 @@
 import test from 'ava'
-import { getHWID } from '../src'
 import {
   ERR_INVALID_ALGORITHM,
   ERR_INVALID_HASH,
   ERR_INVALID_UPPER,
-} from '../src/errors'
+} from '../src/errors.js'
+import { getHWID } from '../src/index.js'
 
 test('is a function', t => {
   t.is(typeof getHWID, 'function')

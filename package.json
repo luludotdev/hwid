@@ -2,24 +2,21 @@
   "name": "hwid",
   "version": "0.3.0",
   "description": "Grab the system's unique hardware ID",
-  "main": "./lib/index.js",
-  "module": "./esm/index.js",
+  "type": "module",
+  "exports": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "sideEffects": false,
   "files": [
-    "lib/**/*",
-    "esm/**/*"
+    "lib/**/*"
   ],
   "scripts": {
     "prepublishOnly": "yarn run test && yarn run build",
     "test": "yarn run check && yarn run lint && yarn run ava",
     "check": "yarn run compile --noEmit",
     "lint": "xo",
-    "clean": "rimraf lib esm",
+    "clean": "rimraf lib",
     "prebuild": "yarn run clean",
-    "build:cjs": "ncc build ./src/index.ts -o lib -m -e winreg -e tslib",
-    "build:esm": "yarn run compile --module ES6 --outDir esm",
-    "build": "yarn run build:cjs && yarn run build:esm",
+    "build": "yarn run compile",
     "compile": "tsc",
     "watch": "yarn run compile --watch",
     "predev": "yarn run clean",
@@ -30,31 +27,32 @@
   "license": "ISC",
   "private": false,
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "devDependencies": {
-    "@types/node": "^14.14.35",
+    "@types/node": "^14.14.37",
     "@types/winreg": "^1.2.30",
-    "@vercel/ncc": "^0.27.0",
     "ava": "^3.15.0",
     "rimraf": "^3.0.2",
     "ts-node": "^9.1.1",
-    "typescript": "^4.2.3",
+    "typescript": "^4.2.4",
     "xo": "^0.38.2"
   },
   "dependencies": {
-    "tslib": "^2.1.0",
     "winreg": "^1.2.4"
   },
   "ava": {
     "files": [
       "test/**/*.ts"
     ],
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
+    "extensions": {
+      "ts": "module"
+    },
+    "nonSemVerExperiments": {
+			"configurableModuleFormat": true
+		},
+    "nodeArguments": [
+			"--loader=ts-node/esm"
+		]
   }
 }

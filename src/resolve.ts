@@ -1,7 +1,7 @@
-import { ERR_UNSUPPORTED_PLATFORM } from './errors'
-import { darwinHWID } from './platforms/darwin'
-import { linuxHWID } from './platforms/linux'
-import { win32HWID } from './platforms/win32'
+import { ERR_UNSUPPORTED_PLATFORM } from './errors.js'
+import { darwinHWID } from './platforms/darwin.js'
+import { linuxHWID } from './platforms/linux.js'
+import { win32HWID } from './platforms/win32.js'
 
 export type ResolverFn = () => Promise<string>
 
