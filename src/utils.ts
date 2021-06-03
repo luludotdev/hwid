@@ -10,18 +10,16 @@ export const hash = (id: string, algo: Algorithm) => {
 }
 
 export type ParserFn = (raw: string) => string
-export const execa: (
-  command: string,
-  parse: ParserFn
-) => Promise<string> = async (command, parse) =>
-  new Promise((resolve, reject) => {
-    exec(command, (error, stdout) => {
-      if (error) {
-        reject(error)
-        return
-      }
+export const execa: (command: string, parse: ParserFn) => Promise<string> =
+  async (command, parse) =>
+    new Promise((resolve, reject) => {
+      exec(command, (error, stdout) => {
+        if (error) {
+          reject(error)
+          return
+        }
 
-      const parsed = parse(stdout)
-      resolve(parsed)
+        const parsed = parse(stdout)
+        resolve(parsed)
+      })
     })
-  })
