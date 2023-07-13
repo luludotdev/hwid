@@ -1,4 +1,4 @@
-import { ERR_UNSUPPORTED_PLATFORM } from './errors.js'
+import { platform } from 'node:process'
 import { darwinHWID } from './platforms/darwin.js'
 import { linuxHWID } from './platforms/linux.js'
 import { win32HWID } from './platforms/win32.js'
@@ -6,7 +6,7 @@ import { win32HWID } from './platforms/win32.js'
 export type ResolverFn = () => Promise<string>
 
 export const resolveID: ResolverFn = async () => {
-  switch (process.platform) {
+  switch (platform) {
     case 'win32':
       return win32HWID()
 
@@ -17,6 +17,6 @@ export const resolveID: ResolverFn = async () => {
       return linuxHWID()
 
     default:
-      throw ERR_UNSUPPORTED_PLATFORM
+      throw new Error('unsupported platform')
   }
 }

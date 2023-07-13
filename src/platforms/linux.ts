@@ -1,14 +1,14 @@
+import { exec } from '../exec.js'
 import type { ResolverFn } from '../resolve.js'
-import { execa } from '../utils.js'
-import type { ParserFn } from '../utils.js'
 
-const SHELL_COMMAND =
-  'cat /var/lib/dbus/machine-id /etc/machine-id 2> /dev/null'
+export const linuxHWID: ResolverFn = async () => {
+  const { stdout } = await exec(
+    'cat /var/lib/dbus/machine-id /etc/machine-id 2> /dev/null || true',
+  )
 
-const parse: ParserFn = raw =>
-  raw
-    .toString()
-    .replace(/\r+|\n+|\s+/gi, '')
-    .toLowerCase()
+  const array = stdout.trim().split('\n')
+  const first = array[0]
+  if (!first) throw new Error('failed to find hwid')
 
-export const linuxHWID: ResolverFn = async () => execa(SHELL_COMMAND, parse)
+  return first
+}

@@ -1,58 +1,8 @@
-import {
-  ERR_INVALID_ALGORITHM,
-  ERR_INVALID_HASH,
-  ERR_INVALID_UPPER,
-  ERR_UNKNOWN_PARSE,
-} from './errors.js'
 import { resolveID } from './resolve.js'
-import { hash } from './utils.js'
-import type { Algorithm } from './utils.js'
 
-interface IOptions {
-  /**
-   * Whether or not to hash the HWID before returning
-   *
-   * Defaults to `false`
-   */
-  hash: boolean
-
-  /**
-   * Hashing algorithm to use if `hash` is `true`
-   *
-   * Defaults to `sha256`
-   */
-  algorithm: Algorithm
-
-  /**
-   * Convert HWID to UPPERCASE before returning
-   *
-   * Defaults to `false`
-   */
-  upper: boolean
-}
-
-export const getHWID = async (options?: Partial<IOptions>) => {
-  if (options?.hash !== undefined && typeof options.hash !== 'boolean') {
-    throw ERR_INVALID_HASH
-  }
-
-  if (
-    options?.algorithm !== undefined &&
-    typeof options.algorithm !== 'string'
-  ) {
-    throw ERR_INVALID_ALGORITHM
-  }
-
-  if (options?.upper !== undefined && typeof options.upper !== 'boolean') {
-    throw ERR_INVALID_UPPER
-  }
-
+export const getHWID = async () => {
   const hwid = await resolveID()
-  if (hwid === '') throw ERR_UNKNOWN_PARSE
+  if (hwid === '') throw new Error('failed to find hwid')
 
-  const shouldHash = options?.hash ?? false
-  const hashed = shouldHash ? hash(hwid, options?.algorithm ?? 'sha256') : hwid
-  return options?.upper ?? false ? hashed.toUpperCase() : hashed.toLowerCase()
+  return hwid
 }
-
-export { getHWID as default }
