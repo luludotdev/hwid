@@ -1,8 +1,12 @@
-import { resolveID } from './resolve.js'
+import { platform } from "node:process";
+import * as linux from "./platforms/linux";
+import * as macos from "./platforms/macos";
+import * as windows from "./platforms/windows";
 
-export const getHWID = async () => {
-  const hwid = await resolveID()
-  if (hwid === '') throw new Error('failed to find hwid')
+export async function hwid(): Promise<string> {
+  if (platform === "win32") return windows.hwid();
+  if (platform === "linux") return linux.hwid();
+  if (platform === "darwin") return macos.hwid();
 
-  return hwid
+  throw new Error(`unsupported platform: ${platform}`);
 }

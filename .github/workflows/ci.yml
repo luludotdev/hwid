@@ -8,17 +8,21 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [16.x, 18.x]
+        node-version: [24.x]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          cache: npm
+          cache: pnpm
           node-version: ${{ matrix.node-version }}
       - name: Install packages
-        run: npm ci
+        run: pnpm install
+      - name: Check Types
+        run: pnpm run typecheck
       - name: Test
-        run: npm run test
+        run: pnpm run test

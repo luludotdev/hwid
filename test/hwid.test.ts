@@ -1,12 +1,12 @@
-import { expect, test } from 'vitest'
-import { getHWID } from '../src/index.js'
+import { expect, test } from "vitest";
+import { hwid } from "../src/index";
 
-test('is a function', () => {
-  expect(typeof getHWID).eq('function')
-})
+test("is a function", () => {
+  expect(typeof hwid).eq("function");
+});
 
-test('returns a string with length > 0', async () => {
-  const hwid = await getHWID()
-  expect(typeof hwid).eq('string')
-  expect(hwid.length).greaterThan(0)
-})
+test("returns a string with length > 0", async () => {
+  const id = await hwid();
+  expect(typeof id).eq("string");
+  expect(id.length).greaterThan(0);
+});

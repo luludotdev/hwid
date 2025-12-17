@@ -15,20 +15,20 @@ This package is published to the NPM registry as [`hwid`](https://www.npmjs.com/
 First, import the module:
 
 ```js
-import { getHWID } from 'hwid'
+import { hwid } from "hwid";
 ```
 
 From there, simply call the function. It returns a promise with the hardware ID as a string. As it returns a promise, you can also use it in an async/await context.
 
 ```js
 // Promises
-getHWID().then(id => {
+hwid().then((id) => {
   // use ID however you want
-})
+});
 
 // async/await
 async function main() {
-  const id = await getHWID()
+  const id = await hwid();
   // use ID however you want
 }
 ```

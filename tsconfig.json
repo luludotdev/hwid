@@ -13,31 +13,30 @@
     "strict": true,
     "useUnknownInCatchVariables": true,
     "noUncheckedIndexedAccess": true,
+    "isolatedDeclarations": true,
+    "skipLibCheck": true,
+    "types": ["node"],
 
     // Modules
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "isolatedModules": true,
     "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
 
     // Emit
     "declaration": true,
-    "declarationMap": true,
-    "importHelpers": false,
-    "noEmitHelpers": false,
-    "inlineSources": true,
+    "emitDeclarationOnly": true,
     "newLine": "lf",
-    "outDir": "dist",
-    "preserveConstEnums": true,
-    "removeComments": false,
-    "sourceMap": true,
-    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
 
     // Language and Environment
     "emitDecoratorMetadata": false,
     "experimentalDecorators": false,
-    "lib": ["ESNext"],
-    "target": "ES2021",
+    "lib": ["es2023"],
+    "target": "esnext",
     "useDefineForClassFields": true
   }
 }

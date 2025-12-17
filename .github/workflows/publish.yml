@@ -1,10 +1,10 @@
-name: Node.js Publish
+name: Publish Package
 on:
   release:
     types: [published]
 
 env:
-  NODE_VERSION: 18.x
+  NODE_VERSION: 24.x
 
 jobs:
   publish:
@@ -14,18 +14,16 @@ jobs:
       id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          cache: npm
+          cache: pnpm
           node-version: ${{ env.NODE_VERSION }}
-          registry-url: 'https://registry.npmjs.org'
-      - name: Update npm
-        run: npm install -g npm
+          registry-url: "https://registry.npmjs.org"
       - name: Install packages
-        run: npm ci
+        run: pnpm install
       - name: Publish to NPM
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
