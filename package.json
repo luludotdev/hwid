@@ -5,6 +5,7 @@
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
+  "bin": "./dist/bin.mjs",
   "exports": {
     ".": "./dist/index.mjs",
     "./linux": "./dist/linux.mjs",

@@ -4,7 +4,10 @@ import type { UserConfig, UserConfigFn } from "tsdown";
 import { defineConfig } from "tsdown";
 
 const config: UserConfigFn = defineConfig(async () => {
-  const entry: Record<string, string> = { index: "./src/index.ts" };
+  const entry: Record<string, string> = {
+    index: "./src/index.ts",
+    bin: "./src/bin.ts",
+  };
 
   const platforms = await readdir("./src/platforms");
   for (const platform of platforms) {
@@ -14,7 +17,14 @@ const config: UserConfigFn = defineConfig(async () => {
 
   return {
     entry,
-    exports: true,
+    exports: {
+      enabled: true,
+      customExports: (pkg, context) => {
+        context.pkg.bin = pkg["./bin"];
+        delete pkg["./bin"];
+        return pkg;
+      },
+    },
     platform: "node",
     tsconfig: true,
     skipNodeModulesBundle: true,

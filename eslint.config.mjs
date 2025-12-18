@@ -7,6 +7,7 @@ const config = [
   ...common,
   ...node,
   ...typescript,
+  ...prettier,
   {
     languageOptions: {
       parserOptions: {
@@ -14,8 +15,10 @@ const config = [
         tsconfigRootDir: import.meta.dirname,
       },
     },
+    rules: {
+      "n/shebang": 0,
+    },
   },
-  ...prettier,
 ];
 
 export default config;
