@@ -38,7 +38,7 @@
     "@types/winreg": "^1.2.36",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",
-    "tsdown": "^0.18.0",
+    "tsdown": "^0.18.1",
     "typescript": "^5.9.3",
     "vitest": "^4.0.16"
   },
